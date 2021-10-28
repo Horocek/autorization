@@ -36,3 +36,4 @@ $ npm run test
 Для генерации токена в зависимостях уже есть пакет `randomstring`.
 
 Код классов UserService, UserTokenService и UserController необходимо покрыть unit-тестами. Пример можно посмотреть в `app.controller.spec.ts`.
+# autorization

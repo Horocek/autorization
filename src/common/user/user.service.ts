@@ -11,9 +11,13 @@ export class UserService {
 
   constructor(
     private readonly userTokenService: UserTokenService,
-  ) {}
+  ) { }
 
+  getToken() {
+    return this.userTokenService.generateToken()
+  }
   findUserByEmail(email: string): User {
+    console.log(this.userTokenService.generateToken());
     return this.users.find(user => user.email === email);
   }
 }

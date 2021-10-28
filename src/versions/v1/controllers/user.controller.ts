@@ -23,12 +23,11 @@ export class UserController {
   };
 
   login(userEmail: string, userPass: string): object {
-    const usersService = new UserService('');
-    const trueUser = usersService.findUserByEmail(userEmail);
-    if (!trueUser) {
+    const user = this.userService.findUserByEmail(userEmail);
+    if (!user) {
       return this.unauthorized();
     }
-    return (trueUser.password === userPass) ?
-      this.autorized(randomstring.generate(32)) : this.unauthorized();
+    return (user.password === userPass) ?
+      this.autorized(this.userService.getToken()) : this.unauthorized();
   }
 }

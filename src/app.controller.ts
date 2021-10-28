@@ -15,7 +15,8 @@ export class AppController {
 
   @Post('login')
   async login(@Body() body: any) {
-    const usersService = new UserService(new UserTokenService());
+    const tokenServise = new UserTokenService();
+    const usersService = new UserService(tokenServise);
     return new UserController(usersService).login(body.login, body.pass);
   }
 }

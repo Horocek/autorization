@@ -17,9 +17,14 @@ describe('UserController', () => {
   });
 
 
-  describe('False User', () => {
+  describe('Autorization user', () => {
     it('should return status == false', () => {
       expect(userController.login('user@lo.cards', '87654321')).toEqual({ "error": "Unauthorized", "status": false, "statusCode": 401 }
+      );
+    });
+
+    it('should return status == false', () => {
+      expect(userController.login(null, '87654321')).toEqual({ "error": "Unauthorized", "status": false, "statusCode": 401 }
       );
     });
 

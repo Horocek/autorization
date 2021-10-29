@@ -11,6 +11,7 @@ export class UserController {
 
   unauthorized(): object {
     return {
+      "status" : false,
       "statusCode": 401,
       "error": "Unauthorized"
     }
@@ -18,6 +19,7 @@ export class UserController {
 
   autorized(token: string): object {
     return {
+      "status" : true,
       "token": token
     }
   };
@@ -27,7 +29,10 @@ export class UserController {
     if (!user) {
       return this.unauthorized();
     }
-    return (user.password === userPass) ?
-      this.autorized(this.userService.getToken()) : this.unauthorized();
+    const isValidPassword = this.userService.isValidPassword(user, userPass);
+    if (isValidPassword) {
+      return this.autorized(this.userService.getToken());
+    } 
+    return this.unauthorized();
   }
 }

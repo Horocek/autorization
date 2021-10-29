@@ -16,7 +16,12 @@ export class UserService {
   getToken() {
     return this.userTokenService.generateToken()
   }
+
   findUserByEmail(email: string): User {
     return this.users.find(user => user.email === email);
+  }
+
+  isValidPassword(user : User, password : string){
+    return (user.password === password)
   }
 }
